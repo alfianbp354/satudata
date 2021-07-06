@@ -1,5 +1,8 @@
 package controller;
 
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import model.Admin;
 
 /*
@@ -12,46 +15,38 @@ import model.Admin;
  *
  * @author Nocty
  */
-public class AdminController {
+public class AdminController extends Controller {
     private Admin model;
 
     public AdminController(Admin model){
        this.model = model;
     }
 
-    public void setNamaAdmin(String name){
-       model.setNama(name);      
-    }
-
     public String getNamaAdmin(){
        return model.getNama();       
-    }
-
-    public void setId_Admin(String id){
-       model.setId_admin(id);      
     }
 
     public String getIdAdmin(){
        return model.getId_admin();     
     }
 
-    public void setEmailAdmin(String email){
-       model.setId_admin(email);      
-    }
-
     public String getEmailAdmin(){
        return model.getEmail();       
     }
-
-    public void setPassword(String pw){
-      model.setPassword(pw);     
-    }
-
-    public String getPassword(){
-       return model.getPassword();     
+    
+    public void inputData(String nama, String email, String password) {
+        model.put(nama, email, password);
     }
         
-    public void updateView(){                
-        // refresh the view
+    @Override
+    public Admin getData(){
+        Admin admin = null;
+        try {
+            admin = new Admin();
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        return admin;
     }
 }

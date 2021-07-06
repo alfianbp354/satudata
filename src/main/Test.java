@@ -6,6 +6,7 @@
 package main;
 
 import controller.AdminController;
+import java.sql.SQLException;
 import model.Admin;
 
 /**
@@ -13,14 +14,14 @@ import model.Admin;
  * @author Nocty
  */
 public class Test {
-    public static void main(String[]args) {
+    public static void main(String[]args) throws SQLException {
         Admin model = retriveDataAdmin();
         AdminController  controller = new AdminController(model);
         
         System.out.println("Hallo " + controller.getNamaAdmin() + "! ^^");
     }
     
-    public static Admin retriveDataAdmin() {
+    public static Admin retriveDataAdmin() throws SQLException {
         Admin admin = new Admin();
         admin.setNama("Zaidan");
         admin.setId_admin("001");
